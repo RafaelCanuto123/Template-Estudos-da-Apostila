@@ -1,5 +1,7 @@
 <?php
+    session_start();
    include '../back/functions.php';   
+   include '../back/tarefas.php';   
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,6 +14,8 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     </head>
     <body>
         <header>
@@ -47,7 +51,67 @@
             </div>
             <div class="container">
             <div id="tarefas" style="display:none; text-align:center;">
-                    <h5>Tarefas</h5>
+                    <h3>Gerenciador de Tarefas</h3>
+                    <form >
+						<fieldset>
+						<label>Tarefa:</label>
+						    <input	type="text" class="w3-input w3-border w3-round" name="nome"	/>
+                        <br>
+                        Descrição(Opcional):
+						   <textarea name="descricao" class="w3-input w3-border w3-round"></textarea>
+						</label>
+                        <label>
+				            Prazo	(Opcional):
+				            <input	type="text" name="prazo" class="w3-input w3-border w3-round"	/>
+                        </label>
+                        <fieldset>
+                            <legend>Prioridade:</legend>
+                             Baixa
+                            <input type="radio" name="prioridade" value="baixa"/>
+                            Média
+                            <input type="radio" name="prioridade" value="media"/>
+                            Alta
+                            <input type="radio" name="prioridade" value="alta"/>
+                        </fieldset>
+                        <label>Tarefa concluída:</label>
+                        <input type="checkbox" name="concluida" value="Sim">
+                        <br>
+						<input	type="submit" value="Cadastrar" class="btn btn-success"	/>
+						</fieldset>
+				</form>
+                <hr>
+                <table class="w3-table">
+                    <tr>
+                        <th>Tarefa</th>
+                        <th>Descrição</th>
+                        <th>Prazo</th>
+                        <th>Prioridade</th>
+                        <th>Concluída</th>
+                    </tr>
+                    <?php
+
+                            foreach($lista_tarefas as $tarefa)
+                            {
+                                 echo '<tr>';
+                                    echo $tarefa['nome'];
+                                    echo $tarefa['descricao'];
+                                    echo $tarefa['prazo'];
+                                    echo $tarefa['prioridade'];
+                                    echo $tarefa['concluida'];
+                                 echo '</tr>';
+                            }
+                    ?>
+                
+                   <tr>
+                        <td><?php echo $tarefa['nome']; ?></td>
+                        <td><?php echo $tarefa['descricao']; ?></td>
+                        <td><?php echo $tarefa['prazo']; ?></td>
+                        <td><?php echo $tarefa['prioridade']; ?></td>
+                        <td><?php echo $tarefa['concluida']; ?></td>
+                   </tr>
+              
+                </table>
+
             </div>
             </div>
             </section>
